@@ -9,7 +9,7 @@ jobs:
     # 예기치 못하게 버전이 올라가서 장애나는 것을 막기 위해
     steps:
       - name: Check out the codes
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup python environment
         id: setup-python
