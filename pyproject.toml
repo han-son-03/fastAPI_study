@@ -1,7 +1,7 @@
 [project]
 name = "fastapiproject1"
 version = "0.1.0"
-description = ""
+description = "fast api"
 authors = [
     {name = "han-son-03",email = "rkdgksths11@naver.com"}
 ]
