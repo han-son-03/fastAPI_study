@@ -60,6 +60,9 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
 
+      - name: Setup edgedb
+        uses: edgedb/setup-edgedb@v1
+
       - name: Run tests
         run: |
           poetry run coverage run -m pytest .
