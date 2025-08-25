@@ -7,18 +7,20 @@ readme = "README.md"
 package-mode = false
 
 [tool.poetry.dependencies]
-# GitHub Actions에서는 3.13 미지원 가능성이 높아 3.11~3.12 권장
 python = ">=3.11,<3.14"
 fastapi = ">=0.116.1,<0.117.0"
 uvicorn = ">=0.35.0,<0.36.0"
 orjson = "3.10.12"
 edgedb = "2.2.0"
 httpx = "0.28.1"
-tortoise-orm = {version = "0.23.0", extras = ["asyncmy"]}
 cryptography = "44.0.0"
 aerich = "0.8.1"
 tomlkit = "0.13.2"
 pydantic-settings = "2.7.1"
+
+[tool.poetry.dependencies.tortoise-orm]
+version = "0.23.0"
+extras = ["asyncmy"]
 
 [tool.poetry.group.dev.dependencies]
 black = "24.10.0"
@@ -28,26 +30,30 @@ pytest = "8.3.4"
 coverage = "7.6.9"
 pytest-asyncio = "0.25.0"
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.black]
 line-length = 120
 
 [tool.ruff]
-# CI 파이썬 버전에 맞춰 설정(예: 3.12)
 target-version = "py313"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
-python_version = "3.12"   # ← 'pythonversion' 아님!
+python_version = "3.12"
 strict = true
 
 [tool.coverage.run]
-# 테스트 파일은 커버리지 집계에서 제외(원하면 경로 조정)
 omit = ["tests/*", "*/test_*.py", "*/tests/*"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
+filterwarnings = ['ignore::DeprecationWarning']
+
+[tool.aerich]
+tortoise_orm = "app.configs.tortoise_config.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
