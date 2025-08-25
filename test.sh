@@ -13,7 +13,7 @@ poetry run ruff check --fix
 echo "OK"
 
 echo "Starting mypy"
-poetry run mypy .
+poetry run dmypy run -- .
 echo "OK"
 
 echo "starting pytest with coverage"
