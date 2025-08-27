@@ -80,3 +80,16 @@ async def api_update_meeting_date_range_edgedb(
         title="test",
         location="test",
     )
+
+
+@mysql_router.patch("/{meeting_url_code}/date_range", description="meeting 의 날짜 range 를 설정합니다.")
+async def api_update_meeting_date_range_mysql(
+    meeting_url_code: str, update_meeting_date_range_request: UpdateMeetingDateRangeRequest
+) -> GetMeetingResponse:
+    return GetMeetingResponse(
+        url_code="abc",
+        start_date=datetime.now().date(),
+        end_date=datetime.now().date(),
+        title="test",
+        location="test",
+    )
